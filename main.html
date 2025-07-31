@@ -6,42 +6,45 @@
 </head>
 <body>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Onion</td>
-        <td class="price">20</td>
-      </tr>
-      <tr>
-        <td>Potato</td>
-        <td class="price">25</td>
-      </tr>
-      <tr>
-        <td>Tomato</td>
-        <td class="price">30</td>
-      </tr>
-    </tbody>
+  <table id="cart">
+    <tr class="item">
+      <td>Item 1</td>
+      <td class="prices">100</td>
+    </tr>
+    <tr class="item">
+      <td>Item 2</td>
+      <td class="prices">150</td>
+    </tr>
+    <tr class="item">
+      <td>Item 3</td>
+      <td class="prices">160</td>
+    </tr>
+    <!-- JS द्वारा total price वाला नया row यहां add होगा -->
   </table>
 
-  <button id="getTotal">Get Total Price</button>
-
-  <!-- ✅ Required for passing the test -->
   <h1 id="ans"></h1>
 
   <script>
-    document.getElementById("getTotal").addEventListener("click", function () {
-      const prices = document.querySelectorAll(".price");
-      let sum = 0;
-      prices.forEach(p => {
-        sum += parseInt(p.textContent);
+    window.addEventListener("DOMContentLoaded", function () {
+      const priceCells = document.querySelectorAll(".prices");
+      let total = 0;
+
+      priceCells.forEach((cell) => {
+        total += Number(cell.textContent);
       });
-      document.getElementById("ans").textContent = sum;
+
+      // Set answer in <h1 id="ans">
+      document.getElementById("ans").textContent = total;
+
+      // Create new row for total in the table
+      const table = document.getElementById("cart");
+      const totalRow = document.createElement("tr");
+      const totalCell = document.createElement("td");
+
+      totalCell.colSpan = 2; // Assuming 2 columns
+      totalCell.textContent = total;
+      totalRow.appendChild(totalCell);
+      table.appendChild(totalRow);
     });
   </script>
 
