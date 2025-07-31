@@ -9,39 +9,38 @@
   <table id="cart">
     <tr class="item">
       <td>Item 1</td>
-      <td class="prices">100</td>
+      <td class="price">100</td>
     </tr>
     <tr class="item">
       <td>Item 2</td>
-      <td class="prices">150</td>
+      <td class="price">150</td>
     </tr>
     <tr class="item">
       <td>Item 3</td>
-      <td class="prices">160</td>
+      <td class="price">160</td>
     </tr>
-    <!-- JS द्वारा total price वाला नया row यहां add होगा -->
   </table>
 
   <h1 id="ans"></h1>
 
   <script>
     window.addEventListener("DOMContentLoaded", function () {
-      const priceCells = document.querySelectorAll(".prices");
+      const priceCells = document.querySelectorAll(".price");
       let total = 0;
 
-      priceCells.forEach((cell) => {
+      priceCells.forEach(cell => {
         total += Number(cell.textContent);
       });
 
-      // Set answer in <h1 id="ans">
+      // Show total in h1#ans
       document.getElementById("ans").textContent = total;
 
-      // Create new row for total in the table
+      // Also show total in table (last row)
       const table = document.getElementById("cart");
       const totalRow = document.createElement("tr");
       const totalCell = document.createElement("td");
 
-      totalCell.colSpan = 2; // Assuming 2 columns
+      totalCell.colSpan = 2;
       totalCell.textContent = total;
       totalRow.appendChild(totalCell);
       table.appendChild(totalRow);
