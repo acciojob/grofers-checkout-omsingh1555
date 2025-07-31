@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Grocery Total Calculator</title>
+  <style>
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 8px;
+      text-align: left;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #totalRow td {
+      background-color: #f0f0f0;
+    }
+  </style>
 </head>
-
 <body>
-    <!-- the entire body must be written by student -->
-    <table style="width: 100%">
-    <caption>
-      Monthly savings
-    </caption>
+
+  <table>
+    <caption><strong>Monthly Savings</strong></caption>
     <tr>
       <th>Item</th>
       <th>Prices in Rs</th>
@@ -37,9 +53,49 @@
       <td class="price">50</td>
     </tr>
   </table>
-    <script type="text/javascript" src="./script.js">
-</script>
+
+  <script>
+    // Create button
+    const getSumBtn = document.createElement("button");
+    getSumBtn.append("Get Total Price");
+    document.body.appendChild(getSumBtn);
+
+    // Define the function to calculate total
+    const getSum = () => {
+      const prices = document.querySelectorAll('.price');
+      let total = 0;
+
+      prices.forEach((cell) => {
+        const value = parseFloat(cell.textContent);
+        if (!isNaN(value)) {
+          total += value;
+        }
+      });
+
+      const table = document.querySelector("table");
+
+      // Remove old total if it exists
+      const existingTotalRow = document.getElementById("totalRow");
+      if (existingTotalRow) {
+        existingTotalRow.remove();
+      }
+
+      // Create new total row
+      const newRow = document.createElement("tr");
+      newRow.id = "totalRow";
+
+      const totalCell = document.createElement("td");
+      totalCell.colSpan = 2;
+      totalCell.style.fontWeight = "bold";
+      totalCell.textContent = `Total Price: ₹${total}`;
+
+      newRow.appendChild(totalCell);
+      table.appendChild(newRow);
+    };
+
+    getSumBtn.addEventListener("click", getSum);
+  </script>
 
 </body>
-
 </html>
+
