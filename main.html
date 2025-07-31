@@ -6,48 +6,21 @@
 </head>
 <body>
 
-  <table id="cart">
-    <tr class="item">
-      <td>Item 1</td>
-      <td class="price">100</td>
-    </tr>
-    <tr class="item">
-      <td>Item 2</td>
-      <td class="price">150</td>
-    </tr>
-    <tr class="item">
-      <td>Item 3</td>
-      <td class="price">160</td>
-    </tr>
-  </table>
+  <div class="item">
+    <span class="price">100</span>
+  </div>
+  <div class="item">
+    <span class="price">120</span>
+  </div>
+  <div class="item">
+    <span class="price">190</span>
+  </div>
 
-  <button id="calcBtn">Calculate Total</button>
+  <button id="getTotal">Get Total Price</button>
+  <h1 id="ans">0</h1>
 
-  <h1 id="ans"></h1>
-
-  <script>
-    const button = document.getElementById("calcBtn");
-    button.addEventListener("click", () => {
-      const prices = document.querySelectorAll(".price");
-      let total = 0;
-      prices.forEach(p => {
-        total += Number(p.textContent);
-      });
-
-      // Show in h1
-      document.getElementById("ans").textContent = total;
-
-      // Append to table
-      const table = document.getElementById("cart");
-      const row = document.createElement("tr");
-      const cell = document.createElement("td");
-      cell.colSpan = 2;
-      cell.textContent = total;
-      row.appendChild(cell);
-      table.appendChild(row);
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+
 
